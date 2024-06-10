@@ -8,6 +8,7 @@
 #include "SnakeElementBase.generated.h"
 
 class UStaticMeshComponent;
+class ASnakeBase;
 
 UCLASS()
 class SNAKEGAMES_API ASnakeElementBase : public AActor, public IInteractable
@@ -20,6 +21,9 @@ public:
 
 	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly)
 	UStaticMeshComponent* MeshComponent;
+
+	UPROPERTY()
+	ASnakeBase* SnakeOwner;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

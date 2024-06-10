@@ -3,6 +3,7 @@
 
 #include "SnakeElementBase.h"
 #include "Engine/Classes/Components/StaticMeshComponent.h"
+#include "SnakeBase.h"
 
 // Sets default values
 ASnakeElementBase::ASnakeElementBase()
@@ -45,6 +46,9 @@ void ASnakeElementBase::HandleBeginOverlap(UPrimitiveComponent* OverlappedCompon
 											bool bFromSweep, 
 											const FHitResult& SweepResult)
 {
-
+	if (IsValid(SnakeOwner))
+	{
+		SnakeOwner->SnakeElementOverlap(this, OtherActor);
+	}
 }
 
