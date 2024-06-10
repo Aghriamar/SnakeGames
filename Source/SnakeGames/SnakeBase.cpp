@@ -97,7 +97,16 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 			{
 				Score++;
 			}
+			else if (Other->IsA<ASnakeElementBase>())
+			{
+				GameOver();
+			}
 		}
 	}
+}
+
+void ASnakeBase::GameOver()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Game Over!"));
 }
 

@@ -57,4 +57,7 @@ public:
 	void Move();
 	UFUNCTION()
 	void SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other);
+
+	UFUNCTION()
+	void GameOver();
 };
