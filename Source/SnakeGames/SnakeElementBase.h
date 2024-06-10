@@ -4,12 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Interactable.h"
 #include "SnakeElementBase.generated.h"
 
 class UStaticMeshComponent;
 
 UCLASS()
-class SNAKEGAMES_API ASnakeElementBase : public AActor
+class SNAKEGAMES_API ASnakeElementBase : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -30,4 +31,14 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void SetFirstElementType();
 	void SetFirstElementType_Implementation();
+
+	virtual void Interact(AActor* Interactor) override;
+
+	UFUNCTION()
+	void HandleBeginOverlap(UPrimitiveComponent* OverlappedComponent, 
+							AActor* OtherActor, 
+							UPrimitiveComponent*  OtherComp, 
+							int32 OtherBodyIndex, 
+							bool bFromSweep, 
+							const FHitResult &SweepResult);
 };

@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Interactable.h"
 #include "Food.generated.h"
 
 UCLASS()
-class SNAKEGAMES_API AFood : public AActor
+class SNAKEGAMES_API AFood : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -22,5 +23,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	virtual void Interact(AActor* Interactor) override;
 
 };
