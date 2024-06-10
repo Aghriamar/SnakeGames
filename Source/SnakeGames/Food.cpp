@@ -25,7 +25,7 @@ void AFood::Tick(float DeltaTime)
 
 }
 
-void AFood::Interact(AActor* Interactor)
+void AFood::Interact(AActor* Interactor, bool bIsHead)
 {
 	
 }
