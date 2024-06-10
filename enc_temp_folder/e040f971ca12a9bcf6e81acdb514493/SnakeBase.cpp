@@ -12,7 +12,7 @@ ASnakeBase::ASnakeBase()
 	PrimaryActorTick.bCanEverTick = true;
 	ElementSize = 100.f;
 	MovementSpeed = 10.f;
-	LastMoveDirection = EMovementDirection::UP;
+	LastMoveDirection = EMovementDirection::LEFT;
 }
 
 // Called when the game starts or when spawned
@@ -20,7 +20,7 @@ void ASnakeBase::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorTickInterval(MovementSpeed);
-	AddSnakeElement(2);
+	AddSnakeElement(4);
 }
 
 // Called every frame
@@ -49,21 +49,20 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 void ASnakeBase::Move()
 {
 	FVector MovementVector;
-	float MovementSpeed1 = ElementSize;
 	
 	switch (LastMoveDirection)
 	{
 		case EMovementDirection::UP:
-			MovementVector.X += MovementSpeed1;
+			MovementVector.X += ElementSize;
 			break;
 		case EMovementDirection::DOWN:
-			MovementVector.X -= MovementSpeed1;
+			MovementVector.X -= ElementSize;
 			break;
 		case EMovementDirection::LEFT:
-			MovementVector.Y += MovementSpeed1;
+			MovementVector.Y += ElementSize;
 			break;
 		case EMovementDirection::RIGHT:
-			MovementVector.Y -= MovementSpeed1;
+			MovementVector.Y -= ElementSize;
 			break;
 	}
 
