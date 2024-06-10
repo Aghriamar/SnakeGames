@@ -12,6 +12,7 @@ ASnakeBase::ASnakeBase()
 	PrimaryActorTick.bCanEverTick = true;
 	ElementSize = 100.f;
 	MovementSpeed = 10.f;
+	SpeedIncrement = 0.05f;
 	LastMoveDirection = EMovementDirection::DOWN;
 	Score = 0;
 }
@@ -96,6 +97,8 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 			if (bIsFirst)
 			{
 				Score++;
+				MovementSpeed = FMath::Max(0.09f, MovementSpeed - SpeedIncrement);
+				SetActorTickInterval(MovementSpeed);
 			}
 			else if (Other->IsA<ASnakeElementBase>())
 			{

@@ -43,6 +43,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	int32 Score;
+
+	UPROPERTY(EditDefaultsOnly)
+	float SpeedIncrement;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
