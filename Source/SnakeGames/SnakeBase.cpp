@@ -13,6 +13,7 @@ ASnakeBase::ASnakeBase()
 	ElementSize = 100.f;
 	MovementSpeed = 10.f;
 	LastMoveDirection = EMovementDirection::DOWN;
+	Score = 0;
 }
 
 // Called when the game starts or when spawned
@@ -92,6 +93,10 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 		if (InteractableInterface)
 		{
 			InteractableInterface->Interact(this, bIsFirst);
+			if (bIsFirst)
+			{
+				Score++;
+			}
 		}
 	}
 }
