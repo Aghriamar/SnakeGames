@@ -4,6 +4,7 @@
 #include "SnakeBase.h"
 #include "SnakeElementBase.h"
 #include "Interactable.h"
+#include "Wall.h"
 
 // Sets default values
 ASnakeBase::ASnakeBase()
@@ -15,6 +16,7 @@ ASnakeBase::ASnakeBase()
 	SpeedIncrement = 0.05f;
 	LastMoveDirection = EMovementDirection::DOWN;
 	Score = 0;
+	bIsGameOver = false;
 }
 
 // Called when the game starts or when spawned
@@ -29,11 +31,15 @@ void ASnakeBase::BeginPlay()
 void ASnakeBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	Move();
+	if (!bIsGameOver) 
+	{
+		Move();
+	}
 }
 
 void ASnakeBase::AddSnakeElement(int ElementsNum)
 {
+	if (bIsGameOver) return;
 	for (int i = 0; i < ElementsNum; ++i)
 	{
 		FVector NewLocation(SnakeElements.Num() * ElementSize, 0, 0);
@@ -50,6 +56,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 
 void ASnakeBase::Move()
 {
+	if (bIsGameOver) return;
 	FVector MovementVector;
 	
 	switch (LastMoveDirection)
@@ -104,6 +111,10 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 			{
 				GameOver();
 			}
+			else if (Other->IsA<AWall>())
+			{
+				GameOver();
+			}
 		}
 	}
 }
@@ -111,5 +122,6 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 void ASnakeBase::GameOver()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Game Over!"));
+	bIsGameOver = true;
 }
 

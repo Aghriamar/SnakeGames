@@ -4,7 +4,9 @@
 #include "PlayerPawnBase.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "SnakeBase.h"
-#include "Components/InputComponent.h"
+#include "Components/InputComponent.h"/*
+#include "Blueprint/UserWidget.h"
+#include "WBP_Score.h"*/
 
 // Sets default values
 APlayerPawnBase::APlayerPawnBase()
@@ -22,6 +24,15 @@ void APlayerPawnBase::BeginPlay()
 	Super::BeginPlay();
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
+
+	/*if (ScoreWidgetClass)
+	{
+		ScoreWidget = CreateWidget<UWBP_Score>(GetWorld(), ScoreWidgetClass);
+		if (ScoreWidget)
+		{
+			ScoreWidget->AddToViewport();
+		}
+	}*/
 }
 
 // Called every frame
@@ -29,6 +40,10 @@ void APlayerPawnBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	/*if (ScoreWidget && SnakeActor)
+	{
+		ScoreWidget->UpdateScore(SnakeActor->Score);
+	}*/
 }
 
 // Called to bind functionality to input
@@ -74,4 +89,12 @@ void APlayerPawnBase::HandlePlayerHorizontalInput(float value)
 		}
 	}
 }
+
+//void APlayerPawnBase::UpdateScore()
+//{
+//	if (ScoreWidget && SnakeActor)
+//	{
+//		ScoreWidget->UpdateScore(SnakeActor->Score);
+//	}
+//}
 

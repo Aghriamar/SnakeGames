@@ -46,6 +46,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	float SpeedIncrement;
+
+	UPROPERTY(BlueprintReadOnly)
+		bool bIsGameOver;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -61,6 +64,6 @@ public:
 	UFUNCTION()
 	void SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void GameOver();
 };

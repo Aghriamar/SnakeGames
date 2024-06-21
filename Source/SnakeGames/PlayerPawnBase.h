@@ -26,6 +26,12 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
+
+	/*UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<class UUserWidget> ScoreWidgetClass;
+
+	UPROPERTY()
+	class UWBP_Score* ScoreWidget;*/
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -44,4 +50,7 @@ public:
 
 	UFUNCTION()
 	void HandlePlayerHorizontalInput(float value);
+
+	/*UFUNCTION()
+	void UpdateScore();*/
 };
